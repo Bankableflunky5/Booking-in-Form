@@ -8,7 +8,6 @@ requireEnvVars([
   //"SMTP_PASSWORD",
 ]);
 
-
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
@@ -21,10 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 // 🔐 Optional SSL config for DB
-const hasSSL =
-  process.env.DB_SSL_CA &&
-  process.env.DB_SSL_CERT &&
-  process.env.DB_SSL_KEY;
+const hasSSL = process.env.DB_SSL_CA && process.env.DB_SSL_CERT && process.env.DB_SSL_KEY;
 
 let sslConfig = undefined;
 
@@ -57,7 +53,6 @@ const db = mysql.createPool({
   ...(sslConfig ? { ssl: sslConfig } : {}), // ✅ only added if configured
 });
 
-
 // 🔹 Nodemailer Configuration (optional)
 let transporter = null;
 
@@ -76,7 +71,6 @@ if (process.env.SMTP_EMAIL && process.env.SMTP_PASSWORD) {
   console.log("⚠️ SMTP credentials not set — email confirmations disabled.");
 }
 
-
 // (Optional) If you still want an "open-form" endpoint, just use it as a health check
 app.post("/api/open-form", async (req, res) => {
   console.log("📌 Received request to open form / health check");
@@ -94,9 +88,7 @@ app.post("/api/open-form", async (req, res) => {
 // 🔹 Fetch Next Job ID (optional)
 app.get("/next-job-id", async (req, res) => {
   try {
-    const [result] = await db.promise().query(
-      "SELECT MAX(jobID) AS maxJobID FROM jobs"
-    );
+    const [result] = await db.promise().query("SELECT MAX(jobID) AS maxJobID FROM jobs");
     const maxJobID = result[0].maxJobID;
     const nextJobID = maxJobID ? maxJobID + 1 : 1; // Start from 1, or max + 1
     res.json({ nextJobID });
@@ -155,10 +147,13 @@ app.post("/submit", async (req, res) => {
     }
 
     // Step 1: Check if the customer exists
-    const [customerResults] = await db.promise().query(
-      "SELECT CustomerID FROM customers WHERE FirstName = ? AND SurName = ? AND Email = ?",
-      [firstName, lastName, email]
-    );
+    const [customerResults] = await db
+      .promise()
+      .query("SELECT CustomerID FROM customers WHERE FirstName = ? AND SurName = ? AND Email = ?", [
+        firstName,
+        lastName,
+        email,
+      ]);
 
     let customerId;
 
@@ -170,35 +165,37 @@ app.post("/submit", async (req, res) => {
       // 🆕 Customer does NOT exist, insert a new customer
       console.log("🆕 New customer detected. Inserting into database.");
 
-      const [customerInsert] = await db.promise().query(
-        "INSERT INTO customers (FirstName, SurName, Phone, Email, PostCode, DoorNumber) VALUES (?, ?, ?, ?, ?, ?)",
-        [firstName, lastName, phone, email, postCode, doorNumber]
-      );
+      const [customerInsert] = await db
+        .promise()
+        .query(
+          "INSERT INTO customers (FirstName, SurName, Phone, Email, PostCode, DoorNumber) VALUES (?, ?, ?, ?, ?, ?)",
+          [firstName, lastName, phone, email, postCode, doorNumber]
+        );
 
       customerId = customerInsert.insertId;
       console.log(`✅ New customer added: CustomerID ${customerId}`);
     }
 
     // Step 2: Update the existing job record using the provided jobID
-    await db.promise().query(
-      "UPDATE jobs SET CustomerID = ?, DeviceBrand = ?, DeviceType = ?, Issue = ?, DataSave = ?, Password = ?, AppleId = ?, Status = 'In Progress', StartDate = NOW() WHERE jobID = ?",
-      [customerId, deviceBrand, deviceType, issue, dataSaveValue, password, appleID, jobID]
-    );
+    await db
+      .promise()
+      .query(
+        "UPDATE jobs SET CustomerID = ?, DeviceBrand = ?, DeviceType = ?, Issue = ?, DataSave = ?, Password = ?, AppleId = ?, Status = 'In Progress', StartDate = NOW() WHERE jobID = ?",
+        [customerId, deviceBrand, deviceType, issue, dataSaveValue, password, appleID, jobID]
+      );
 
     console.log(`✅ Job successfully updated: JobID ${jobID}`);
 
     // Step 3: Insert howHeard into the HowHeard table
-    await db.promise().query(
-      "INSERT INTO HowHeard (JobID, HowHeard) VALUES (?, ?)",
-      [jobID, howHeard]
-    );
+    await db
+      .promise()
+      .query("INSERT INTO HowHeard (JobID, HowHeard) VALUES (?, ?)", [jobID, howHeard]);
 
     // Send Confirmation Email (fire and forget)
     sendConfirmationEmail(email, firstName, lastName, jobID);
 
     res.json({
-      message:
-        "Form submitted successfully! You will receive an email confirmation shortly.",
+      message: "Form submitted successfully! You will receive an email confirmation shortly.",
       jobID,
     });
   } catch (error) {
@@ -249,8 +246,6 @@ app.post("/api/cancel-job", async (req, res) => {
   }
 });
 
-
-
 // 🔹 Function to Send Email
 function sendConfirmationEmail(email, firstName, lastName, jobId) {
   // 👇 This prevents "Cannot read properties of null (reading 'sendMail')"
@@ -282,7 +277,6 @@ function sendConfirmationEmail(email, firstName, lastName, jobId) {
   });
 }
 
-
 function requireEnvVars(requiredVars) {
   const missing = requiredVars.filter((name) => !process.env[name]);
 
@@ -297,6 +291,4 @@ function requireEnvVars(requiredVars) {
 }
 
 // 🔹 Start the Backend Server
-app.listen(5000, "0.0.0.0", () =>
-  console.log("🚀 Server running on http://0.0.0.0:5000")
-);
+app.listen(5000, "0.0.0.0", () => console.log("🚀 Server running on http://0.0.0.0:5000"));

@@ -7,10 +7,10 @@ type CheckboxFieldProps = {
   name: string;
   checked: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  label: ReactNode;                // supports text + links
+  label: ReactNode; // supports text + links
   required?: boolean;
-  description?: ReactNode;         // optional helper text under the label
-  className?: string;              // optional extra container classes
+  description?: ReactNode; // optional helper text under the label
+  className?: string; // optional extra container classes
 };
 
 export default function CheckboxField({

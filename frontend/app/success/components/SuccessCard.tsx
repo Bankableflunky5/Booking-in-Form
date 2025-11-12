@@ -48,8 +48,7 @@ export default function SuccessCard({
       {/* Job Reference ID */}
       {jobID && (
         <p className="text-sm font-medium text-gray-700 mb-8">
-          Reference ID:{" "}
-          <span className="font-semibold text-blue-700">{jobID}</span>
+          Reference ID: <span className="font-semibold text-blue-700">{jobID}</span>
         </p>
       )}
 

@@ -28,7 +28,7 @@ export default function SuccessPage() {
       <SuccessCard
         fadeIn={fadeIn}
         onBack={handleSubmitAnother}
-        jobID={searchParams.get("jobID")}  // 👈 this pulls the jobID from URL
+        jobID={searchParams.get("jobID")} // 👈 this pulls the jobID from URL
       />
     </div>
   );

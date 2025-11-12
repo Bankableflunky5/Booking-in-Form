@@ -1,3 +1,3 @@
 export type ReserveJobResponse = {
-jobID: string;
+  jobID: string;
 };

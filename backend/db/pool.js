@@ -1,6 +1,6 @@
 // src/db/pool.js
-const mysql = require("mysql2")
-const { env, ssl } = require("../config/env")
+const mysql = require("mysql2");
+const { env, ssl } = require("../config/env");
 
 // Create a single pool; always use the promise API.
 const pool = mysql.createPool({
@@ -12,7 +12,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   ...(ssl ? { ssl } : {}),
-})
+});
 
-const db = pool.promise()
-module.exports = { db }
+const db = pool.promise();
+module.exports = { db };

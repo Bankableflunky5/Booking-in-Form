@@ -7,8 +7,8 @@ import { AlertCircle, X } from "lucide-react";
 type ErrorBannerProps = {
   message?: string;
   duration?: number | null; // ms; set null to disable auto-dismiss
-  dismissible?: boolean;     // show an X button
-  onClose?: () => void;      // optional callback when dismissed
+  dismissible?: boolean; // show an X button
+  onClose?: () => void; // optional callback when dismissed
 };
 
 export default function ErrorBanner({

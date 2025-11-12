@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { ChangeEvent } from "react";
 import type { FormDataShape } from "../types/form";
-import CheckboxField from "../../shared/CheckboxField"
+import CheckboxField from "../../shared/CheckboxField";
 
 export default function TermsCheckbox({
   formData,

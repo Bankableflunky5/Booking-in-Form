@@ -1,14 +1,18 @@
 "use client";
 
-import { useMemo } from "react";
 import { Loader2, Wrench, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { env, safeDefaults, getMissingFrontendEnv } from "../lib/env";
 import { useBooking } from "../hooks/useBooking";
 
 export default function HomeLanding() {
-  // Env guard
+  // Call hooks/values at top level every render
   const missing = getMissingFrontendEnv();
+  const name = env.businessName || safeDefaults.businessName;
+  const tagline = env.businessTagline || safeDefaults.businessTagline;
+  const { start, loading, error } = useBooking();
+
+  // Render guard OR main UI, but don't early-return before hooks would run
   if (missing.length > 0) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-red-50 p-6 text-red-700">
@@ -38,33 +42,27 @@ export default function HomeLanding() {
     );
   }
 
-  // Hero details
-  const name = useMemo(() => env.businessName || safeDefaults.businessName, []);
-  const tagline = useMemo(() => env.businessTagline || safeDefaults.businessTagline, []);
-  const { start, loading, error } = useBooking();
-
+  // Normal landing
   return (
     <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100 p-6">
       <motion.section
-        initial={{ opacity: 0, y: 12 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className="w-full max-w-lg rounded-2xl bg-white px-8 py-10 text-center shadow-2xl"
         role="region"
         aria-labelledby="landing-title"
       >
-        {/* Hero header */}
         <header className="mb-8">
           <h1
             id="landing-title"
-            className="mb-3 text-4xl font-black text-blue-800 sm:text-5xl tracking-tight"
+            className="mb-3 text-4xl font-black tracking-tight text-blue-800 sm:text-5xl"
           >
             {name}
           </h1>
           <p className="italic text-gray-500">{tagline}</p>
         </header>
 
-        {/* Welcome text */}
         <div className="mb-8">
           <h2 className="mb-2 text-2xl font-semibold text-gray-800">Welcome!</h2>
           <p className="text-lg text-gray-600">
@@ -72,7 +70,6 @@ export default function HomeLanding() {
           </p>
         </div>
 
-        {/* Error banner */}
         {error && (
           <div
             className="mb-4 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-left text-red-700"
@@ -86,7 +83,6 @@ export default function HomeLanding() {
           </div>
         )}
 
-        {/* CTA button */}
         <div className="flex justify-center">
           <motion.button
             onClick={start}
@@ -118,13 +114,19 @@ export default function HomeLanding() {
           </motion.button>
         </div>
 
-        {/* Subtle footer */}
-        <footer className="mt-6 text-xs text-gray-500">
+        <motion.footer
+          className="mt-6 text-xs text-gray-500"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
           <span className="sr-only" aria-live="polite">
             {loading ? "Starting booking…" : "Ready"}
           </span>
-          <p>© {new Date().getFullYear()} {name}. All rights reserved.</p>
-        </footer>
+          <p>
+            © {new Date().getFullYear()} {name}. All rights reserved.
+          </p>
+        </motion.footer>
       </motion.section>
     </main>
   );

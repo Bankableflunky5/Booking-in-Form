@@ -2,18 +2,10 @@
 
 import type { ChangeEvent, ReactNode } from "react";
 import type { FormDataShape } from "../types/form";
-import {
-  howHeardOptions,
-  deviceTypeOptions,
-  deviceBrandOptions,
-} from "../constants/options";
+import { howHeardOptions, deviceTypeOptions, deviceBrandOptions } from "../constants/options";
 
 export type InputHandlers = {
-  onChange: (
-    e: ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
 };
 
 /* ----------------------------- UI Primitives ----------------------------- */
@@ -33,16 +25,11 @@ function Field({
 }) {
   return (
     <div className="space-y-1.5">
-      <label
-        htmlFor={htmlFor}
-        className="block text-sm font-medium text-gray-700"
-      >
+      <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700">
         {label} {required && <span className="text-red-600">*</span>}
       </label>
       {children}
-      {hint ? (
-        <p className="text-xs text-gray-500 leading-relaxed">{hint}</p>
-      ) : null}
+      {hint ? <p className="text-xs text-gray-500 leading-relaxed">{hint}</p> : null}
     </div>
   );
 }

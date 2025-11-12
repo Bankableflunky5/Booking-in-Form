@@ -14,10 +14,7 @@ export default function AppleIdField({
 
   return (
     <div className="flex flex-col space-y-1.5 mt-2">
-      <label
-        htmlFor="appleId"
-        className="text-sm font-medium text-gray-700"
-      >
+      <label htmlFor="appleId" className="text-sm font-medium text-gray-700">
         Apple ID (optional)
       </label>
       <input
@@ -38,9 +35,7 @@ export default function AppleIdField({
       <p className="text-xs text-gray-600 leading-relaxed">
         Optional. Providing your Apple ID helps with diagnostics (iCloud, Find My, etc.).
         <br />
-        <span className="text-gray-500">
-          Do not include your password here.
-        </span>
+        <span className="text-gray-500">Do not include your password here.</span>
       </p>
     </div>
   );

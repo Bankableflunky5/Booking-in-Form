@@ -34,24 +34,26 @@ node backend.js
 ```
 
 ---
+
 ## 🌐 Environment variables
-Create a .env file in root of backend with 
+
+Create a .env file in root of backend with
+
 ```bash
 DB_HOST=your_host
 DB_USER=your_user
 DB_PASSWORD=your_password
 DB_NAME=database_name
 DB_SSL_CA=pathto/mariadb.crt
-DB_SSL_CERT=pathto/mariadb.crt  
-DB_SSL_KEY=pathto/mariadb.key  
+DB_SSL_CERT=pathto/mariadb.crt
+DB_SSL_KEY=pathto/mariadb.key
 
 SMTP_EMAIL=your_email_username
 SMTP_PASSWORD=your_app_password
 
 ```
+
 ---
-
-
 
 ## 🔐 SSL Configuration
 
@@ -71,6 +73,7 @@ SMTP_PASSWORD=your_app_password
      #   } : undefined
     });
 ```
+
 ---
 
 ## 🔄 Data Workflow
@@ -88,13 +91,9 @@ DB connection can be closed with `/close-connection`
 
 ## 🛡 Security Notes
 
-- DB access is wrapped in error handling  
-- Email fields and queries are parameterized  
-- Use SSL for both DB and SMTP for full end-to-end encryption  
+- DB access is wrapped in error handling
+- Email fields and queries are parameterized
+- Use SSL for both DB and SMTP for full end-to-end encryption
 - Only bind to `0.0.0.0` on trusted local networks
 
 ---
-
-
-
-

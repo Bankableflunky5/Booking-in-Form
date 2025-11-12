@@ -70,16 +70,12 @@ async function main() {
   console.log("🧙‍♂️ Welcome to the Env Setup Wizard\n");
 
   // 🌐 General app config
-  const businessName =
-    (await ask("Business name (e.g. TechEase Repairs): ")) || "Business Name";
+  const businessName = (await ask("Business name (e.g. TechEase Repairs): ")) || "Business Name";
   const businessTagline =
-    (await ask("Business tagline (e.g. Tech Repair Made Simple.): ")) ||
-    "Tech Repair Made Simple.";
+    (await ask("Business tagline (e.g. Tech Repair Made Simple.): ")) || "Tech Repair Made Simple.";
 
   // 🌐 Frontend API URL
-  const apiInput = await ask(
-    "Frontend API URL [http://localhost:5000 or just IP/host]: "
-  );
+  const apiInput = await ask("Frontend API URL [http://localhost:5000 or just IP/host]: ");
 
   let apiUrl;
   if (!apiInput) {
@@ -96,8 +92,7 @@ async function main() {
 
   // 🏠 Local or remote
   const dbType =
-    (await ask("Is your database local or remote? (local/remote) [local]: ")) ||
-    "local";
+    (await ask("Is your database local or remote? (local/remote) [local]: ")) || "local";
   let dbHost;
   if (dbType.toLowerCase() === "remote") {
     dbHost = await ask("Enter remote DB host (e.g. db.example.com): ");
@@ -112,18 +107,16 @@ async function main() {
 
   // 🔐 Optional SSL config (kept as-is; not wired into createConnection by default)
   console.log("\n🔐 SSL Configuration (optional)\n");
-  const sslAnswer = (await ask(
-    "Do you want to configure SSL for the database? (y/N): "
-  )).toLowerCase();
+  const sslAnswer = (
+    await ask("Do you want to configure SSL for the database? (y/N): ")
+  ).toLowerCase();
 
   let sslEnvBlock = "";
   // let sslConfig = null;
 
   if (/^y(es)?$/.test(sslAnswer)) {
     console.log("\nPlease enter the paths to your MariaDB SSL files.");
-    const sslCa = await ask(
-      "Path to CA file (DB_SSL_CA), e.g. /etc/mysql/ssl/mariadb-ca.crt: "
-    );
+    const sslCa = await ask("Path to CA file (DB_SSL_CA), e.g. /etc/mysql/ssl/mariadb-ca.crt: ");
     const sslCert = await ask(
       "Path to client cert file (DB_SSL_CERT), e.g. /etc/mysql/ssl/mariadb.crt: "
     );
@@ -145,9 +138,7 @@ DB_SSL_KEY=${sslKey}`.trim();
 
   // 📧 Optional Email config (NEW)
   console.log("\n📧 Email Configuration (optional)\n");
-  const useEmail = /^y(es)?$/i.test(
-    (await ask("Do you want to set up SMTP email now? (y/N): "))
-  );
+  const useEmail = /^y(es)?$/i.test(await ask("Do you want to set up SMTP email now? (y/N): "));
 
   let smtpEmail = "";
   let smtpPassword = "";

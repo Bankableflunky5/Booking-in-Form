@@ -1,4 +1,4 @@
-# 🧩 TechRepair Booking Form 
+# 🧩 TechRepair Booking Form
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
@@ -7,14 +7,13 @@
 
 ## 🖼️ Preview
 
-*(Demo branding: FlunkyFix — “Repair is Noble.” — customizable via `.env`)*
+_(Demo branding: FlunkyFix — “Repair is Noble.” — customizable via `.env`)_
 
 <p align="center">
   <img src="screenshots/form.gif" width="800" alt="Homepage" />
 </p>
 
-
-A full-stack booking system built with **Next.js**, **TypeScript**, and **Node.js + MySQL**, designed specifically for repair shops, inspired from experience within the industry. 
+A full-stack booking system built with **Next.js**, **TypeScript**, and **Node.js + MySQL**, designed specifically for repair shops, inspired from experience within the industry.
 
 This project demonstrates modern frontend architecture, reusable React components, modular backend APIs, and real-world environment configuration tooling — all production-ready.
 
@@ -39,6 +38,7 @@ This project demonstrates modern frontend architecture, reusable React component
 ## Tech Stack
 
 ### Frontend
+
 - [Next.js 15 (App Router)](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [TailwindCSS](https://tailwindcss.com/)
@@ -46,12 +46,14 @@ This project demonstrates modern frontend architecture, reusable React component
 - [Lucide Icons](https://lucide.dev/)
 
 ### Backend
+
 - [Express](https://expressjs.com/)
 - [MySQL2](https://github.com/sidorares/node-mysql2)
 - [Axios](https://axios-http.com/)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 
 ### Tooling
+
 - Custom setup wizard (`scripts/setup-env.mjs`)
 - ESLint + Prettier formatting
 - Nodemon for backend dev
@@ -94,10 +96,13 @@ npm run setup
 ### 4️ Start the dev servers
 
 Run:
+
 ```bash
 npm run dev
 ```
 
 ---
+
 ## 🧾 License
+
 MIT License — Use it however you want
