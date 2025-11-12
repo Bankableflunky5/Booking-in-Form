@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+# Next.js
+.next/
+.vercel/
+# Build outputs
+dist/
+build/
+out/
+# Tooling
+.turbo/
+coverage/
+*.log
