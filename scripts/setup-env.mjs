@@ -31,7 +31,6 @@ async function maybeCreateDatabase({ dbHost, dbUser, dbPassword, dbName /*, sslC
       user: dbUser,
       password: dbPassword,
       multipleStatements: true,
-      // If you later want SSL here too, you can uncomment and pass sslConfig:
       // ...(sslConfig ? { ssl: sslConfig } : {}),
     });
 
@@ -76,34 +75,30 @@ async function main() {
   const businessTagline =
     (await ask("Business tagline (e.g. Tech Repair Made Simple.): ")) ||
     "Tech Repair Made Simple.";
-  // 🌐 Frontend API URL (accepts full URL or just IP/host)
+
+  // 🌐 Frontend API URL
   const apiInput = await ask(
     "Frontend API URL [http://localhost:5000 or just IP/host]: "
   );
 
   let apiUrl;
-
   if (!apiInput) {
-    // User just pressed Enter → default
     apiUrl = "http://localhost:5000";
   } else if (/^https?:\/\//i.test(apiInput)) {
-    // User entered full URL → use as-is
     apiUrl = apiInput;
   } else {
-    // User entered just IP/hostname → build full URL
-    const cleanHost = apiInput.replace(/\/+$/g, ""); // strip trailing slashes
+    const cleanHost = apiInput.replace(/\/+$/g, "");
     apiUrl = `http://${cleanHost}:5000`;
   }
-
   console.log("➡ Using API URL:", apiUrl);
-
 
   console.log("\n🗄️ Database Configuration\n");
 
-  // 🏠 Ask local or remote
-  const dbType = (await ask("Is your database local or remote? (local/remote) [local]: ")) || "local";
+  // 🏠 Local or remote
+  const dbType =
+    (await ask("Is your database local or remote? (local/remote) [local]: ")) ||
+    "local";
   let dbHost;
-
   if (dbType.toLowerCase() === "remote") {
     dbHost = await ask("Enter remote DB host (e.g. db.example.com): ");
   } else {
@@ -115,29 +110,32 @@ async function main() {
   const dbPassword = await ask("DB password: ");
   const dbName = (await ask("DB name [test]: ")) || "test";
 
-  // 🔐 Optional SSL config
+  // 🔐 Optional SSL config (kept as-is; not wired into createConnection by default)
   console.log("\n🔐 SSL Configuration (optional)\n");
-  const sslAnswer = (await ask("Do you want to configure SSL for the database? (y/N): ")).toLowerCase();
+  const sslAnswer = (await ask(
+    "Do you want to configure SSL for the database? (y/N): "
+  )).toLowerCase();
 
   let sslEnvBlock = "";
-  // Optional: if you ever want to also use SSL in maybeCreateDatabase, you can build sslConfig here
   // let sslConfig = null;
 
   if (/^y(es)?$/.test(sslAnswer)) {
     console.log("\nPlease enter the paths to your MariaDB SSL files.");
-
-    // You can either ask for each file explicitly...
-    const sslCa = await ask("Path to CA file (DB_SSL_CA), e.g. /etc/mysql/ssl/mariadb-ca.crt: ");
-    const sslCert = await ask("Path to client cert file (DB_SSL_CERT), e.g. /etc/mysql/ssl/mariadb.crt: ");
-    const sslKey = await ask("Path to client key file (DB_SSL_KEY), e.g. /etc/mysql/ssl/mariadb.key: ");
+    const sslCa = await ask(
+      "Path to CA file (DB_SSL_CA), e.g. /etc/mysql/ssl/mariadb-ca.crt: "
+    );
+    const sslCert = await ask(
+      "Path to client cert file (DB_SSL_CERT), e.g. /etc/mysql/ssl/mariadb.crt: "
+    );
+    const sslKey = await ask(
+      "Path to client key file (DB_SSL_KEY), e.g. /etc/mysql/ssl/mariadb.key: "
+    );
 
     sslEnvBlock = `
 DB_SSL_CA=${sslCa}
 DB_SSL_CERT=${sslCert}
-DB_SSL_KEY=${sslKey}
-`.trim();
+DB_SSL_KEY=${sslKey}`.trim();
 
-    // If you wanted to use this for the wizard's own connection:
     // sslConfig = {
     //   ca: fs.readFileSync(sslCa),
     //   cert: fs.readFileSync(sslCert),
@@ -145,9 +143,21 @@ DB_SSL_KEY=${sslKey}
     // };
   }
 
-  console.log("\n📧 Email Configuration\n");
-  const smtpEmail = await ask("SMTP email (for sending confirmations): ");
-  const smtpPassword = await ask("SMTP app password: ");
+  // 📧 Optional Email config (NEW)
+  console.log("\n📧 Email Configuration (optional)\n");
+  const useEmail = /^y(es)?$/i.test(
+    (await ask("Do you want to set up SMTP email now? (y/N): "))
+  );
+
+  let smtpEmail = "";
+  let smtpPassword = "";
+
+  if (useEmail) {
+    smtpEmail = await ask("SMTP email (for sending confirmations): ");
+    smtpPassword = await ask("SMTP app password: ");
+  } else {
+    console.log("ℹ️ Skipping SMTP setup. Values will be left blank in .env.");
+  }
 
   // 🧾 FRONTEND .env.local
   const frontendEnv =

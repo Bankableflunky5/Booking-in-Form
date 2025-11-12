@@ -1,46 +1,66 @@
-# 🧾 DBDoc – Full-Stack Booking App (React + Node.js)
+# 🧩 TechRepair Booking Form 
 
-**DBDoc** is a full-stack **local repair shop booking system**, built with a modern architecture featuring a **React/Next.js frontend** and a **Node.js backend** using **MariaDB/MySQL**.  
-It’s designed for **local or internal network use**, giving small businesses an easy-to-deploy booking solution without relying on the cloud.
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-blueviolet?logo=tailwind-css)](https://tailwindcss.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-20-green?logo=node.js)](https://nodejs.org/)
 
----
+A full-stack booking system built with **Next.js**, **TypeScript**, and **Node.js + MySQL**, designed for repair shops or service-based businesses.
 
-## 📦 Tech Stack Overview
-
-| Layer | Tech Stack | Purpose |
-|-------|-------------|----------|
-| **Frontend** | Next.js (React) + Tailwind CSS | Customer-facing booking UI |
-| **Backend** | Node.js + Express + MySQL2 | Handles form submissions, DB logic, and emails |
-| **Database** | MariaDB / MySQL | Stores jobs, customer details, and booking data |
+This project demonstrates modern frontend architecture, reusable React components, modular backend APIs, and real-world environment configuration tooling — all production-ready.
 
 ---
 
-## ✨ Features
+## 🚀 Features
 
-- 📋 Clean booking form with auto-save (persists unfinished input)
-- 🔢 Automatically reserves the next **Job ID** before submission
-- 📧 Sends confirmation emails including job reference
-- 🔐 Optional SSL support for secure DB connections
-- 🧠 Smart customer linking (detects returning customers)
-- 🖥️ Fully local — no external APIs or cloud dependencies
+✅ Responsive, animated **Next.js 15** frontend  
+✅ Modular **Express + MySQL** backend  
+✅ Smart `.env` setup wizard with database bootstrap  
+✅ Persistent form state with `localStorage`  
+✅ Custom booking flow with job reservation & cancellation  
+✅ Animated success screen + dynamic job ID reference  
+✅ Fully modularized React component structure  
+✅ Reusable form elements with consistent UI/UX  
+✅ Environment variable validation and error display  
+✅ Optional SSL + SMTP configuration built in
+
+---
+
+## 🧠 Tech Stack
+
+### Frontend
+- [Next.js 15 (App Router)](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Lucide Icons](https://lucide.dev/)
+
+### Backend
+- [Express](https://expressjs.com/)
+- [MySQL2](https://github.com/sidorares/node-mysql2)
+- [Axios](https://axios-http.com/)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+
+### Tooling
+- Custom setup wizard (`scripts/setup-env.mjs`)
+- ESLint + Prettier formatting
+- Nodemon for backend dev
+- Cross-platform scripts for local dev
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Setup Instructions
 
-### 1️⃣ Prerequisites
+### 1️⃣ Clone the repository:
 
-Before you begin, make sure the following are installed:
-
-- **Node.js** ≥ 18  
-- **MariaDB** or **MySQL** (running locally or on your LAN)  
-
-
----
+```bash
+git clone https://github.com/yourusername/techease-booking-portal.git
+cd techease-booking-portal
+```
 
 ### 2️⃣ Install Dependencies
 
-From the project root directory, run:
+From the project root directory, Run:
 
 ```bash
 npm install
@@ -52,7 +72,8 @@ The setup wizard will:
 
 - Create `.env` files for **frontend** and **backend**
 - Ask for your **business name**, **API URL**, and **database credentials**
-- (Optionally) **create your database and tables** using the included `template.sql`
+- (Optionally) **create your database and tables** using the included `schema.sql`
+- (Optionally) **set up email (SMTP)**
 
 Run it with:
 
@@ -62,7 +83,11 @@ npm run setup
 
 ### 4️⃣ Start the dev servers
 
-run:
+Run:
 ```bash
 npm run dev
 ```
+
+---
+## 🧾 License
+MIT License — free to use and modify for educational or portfolio purposes.
