@@ -32,7 +32,7 @@ export function useSubmitBooking(apiUrl?: string, jobID?: number | null) {
       await axios.post(`${apiUrl}/api/submit`, payload);
       // success handled by page (clear storage + navigate)
       return true;
-    } catch (error: any) {
+    } catch (error) {
       console.error("Axios Error:", error?.response ? error.response.data : error?.message);
       setErrorMessage(
         error?.response ? error.response.data?.error : "An error occurred. Check console."

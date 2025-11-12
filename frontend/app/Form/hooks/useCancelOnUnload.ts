@@ -6,7 +6,8 @@ export function useCancelOnUnload(jobID: number | null, formSubmitted: boolean, 
   useEffect(() => {
     if (!jobID || !apiUrl) return;
 
-    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleBeforeUnload = (_event: BeforeUnloadEvent) => {
       if (!formSubmitted) {
         try {
           fetch(`${apiUrl}/api/cancel-job`, {
@@ -15,7 +16,7 @@ export function useCancelOnUnload(jobID: number | null, formSubmitted: boolean, 
             body: JSON.stringify({ jobID }),
             keepalive: true,
           });
-        } catch {}
+        } catch {console.log("Failed to cancel job on unload");}
       }
     };
 

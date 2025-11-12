@@ -28,7 +28,7 @@ export function useBooking() {
 
       // 3) Navigate
       router.push(`/Form?jobID=${jobID}`);
-    } catch (e: any) {
+    } catch (e) {
       console.error("Error starting booking:", e);
       setError(e?.message || "Something went wrong");
     } finally {

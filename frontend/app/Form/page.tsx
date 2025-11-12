@@ -5,7 +5,6 @@ import { useJobId } from "./hooks/useJobId";
 import { usePersistentForm } from "./hooks/usePersistentForm";
 import { useCancelOnUnload } from "./hooks/useCancelOnUnload";
 import { useSubmitBooking } from "./hooks/useSubmitBooking";
-import { emptyFormData } from "./types/form";
 import type { FormDataShape } from "./types/form";
 
 import ErrorBanner from "./components/ErrorBanner";
@@ -43,7 +42,7 @@ export default function FormPage() {
         HTMLTextAreaElement &
         HTMLSelectElement;
       const patch: Partial<FormDataShape> = {
-        [name]: (type === "checkbox" ? (checked ? 1 : 0) : value) as any,
+        [name]: (type === "checkbox" ? (checked ? 1 : 0) : value) as string | number,
       };
       setFormData(patch);
     },
@@ -60,7 +59,7 @@ export default function FormPage() {
         goSuccess(jobID);
       }
     },
-    [submit, formData, reset, goSuccess]
+    [submit, formData, reset, goSuccess, jobID]
   );
 
   const handleResetForm = () => {
@@ -90,8 +89,8 @@ export default function FormPage() {
           <Issue formData={formData} onChange={handleChange} />
           <Password formData={formData} onChange={handleChange} />
 
-          <DataSaveCheckbox formData={formData} onChange={handleChange as any} />
-          <TermsCheckbox formData={formData} onChange={handleChange as any} />
+          <DataSaveCheckbox formData={formData} onChange={handleChange} />
+          <TermsCheckbox formData={formData} onChange={handleChange} />
 
           <SubmitButton loading={loading} />
         </form>

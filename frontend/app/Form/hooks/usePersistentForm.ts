@@ -1,41 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { FormDataShape } from "../types/form";
-import { emptyFormData } from "../types/form";
-
-const STORAGE_KEY = "formData";
+import { useEffect, useState, useCallback } from "react";
+import { emptyFormData, type FormDataShape } from "../types/form";
 
 export function usePersistentForm() {
-  const [formData, setFormData] = useState<FormDataShape>(emptyFormData);
+  const [formData, setFormDataState] = useState<FormDataShape>(emptyFormData);
 
-  // Load on mount
+  // Load once
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) setFormData(JSON.parse(saved));
+      const saved = localStorage.getItem("formData");
+      if (saved) {
+        setFormDataState(JSON.parse(saved));
+      }
     } catch {
-      // ignore
+      /* noop: ignore malformed storage */
     }
   }, []);
 
-  // Setter with persistence
-  const update = (next: Partial<FormDataShape>) => {
-    setFormData((prev) => {
-      const merged = { ...prev, ...next };
+  const setFormData = useCallback((patch: Partial<FormDataShape>) => {
+    setFormDataState((prev) => {
+      const next = { ...prev, ...patch };
       try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
-      } catch {}
-      return merged;
+        localStorage.setItem("formData", JSON.stringify(next));
+      } catch {
+        /* noop: storage may be unavailable */
+      }
+      return next;
     });
-  };
+  }, []);
 
-  const reset = () => {
-    setFormData(emptyFormData);
+  const reset = useCallback(() => {
+    setFormDataState(emptyFormData);
     try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch {}
-  };
+      localStorage.removeItem("formData");
+    } catch {
+      /* noop */
+    }
+  }, []);
 
-  return { formData, setFormData: update, reset } as const;
+  return { formData, setFormData, reset };
 }
