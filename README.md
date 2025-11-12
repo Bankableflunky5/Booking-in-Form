@@ -8,7 +8,7 @@
 ## 🖼️ Preview
 
 <p align="center">
-  <img src="screenshots/homePage.jpeg" width="800" alt="Homepage" />
+  <img src="screenshots/HomePage.jpeg" width="800" alt="Homepage" />
   <br/>
   <img src="screenshots/form.jpeg" width="800" alt="Booking Form" />
   <br/>
