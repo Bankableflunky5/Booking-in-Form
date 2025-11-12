@@ -14,28 +14,29 @@
 </p>
 
 
-A full-stack booking system built with **Next.js**, **TypeScript**, and **Node.js + MySQL**, designed for repair shops or service-based businesses.
+A full-stack booking system built with **Next.js**, **TypeScript**, and **Node.js + MySQL**, designed specifically for repair shops, inspired from experience within the industry. 
 
 This project demonstrates modern frontend architecture, reusable React components, modular backend APIs, and real-world environment configuration tooling — all production-ready.
 
 ---
 
-## 🚀 Features
+## Features
 
-✅ Responsive, animated **Next.js 15** frontend  
-✅ Modular **Express + MySQL** backend  
-✅ Smart `.env` setup wizard with database bootstrap  
-✅ Persistent form state with `localStorage`  
-✅ Custom booking flow with job reservation & cancellation  
-✅ Animated success screen + dynamic job ID reference  
-✅ Fully modularized React component structure  
-✅ Reusable form elements with consistent UI/UX  
-✅ Environment variable validation and error display  
-✅ Optional SSL + SMTP configuration built in
+- Responsive, animated Next.js 15 frontend built for performance
+- Modular Express + MySQL backend with clean API design
+- Smart .env setup wizard — generates config and initializes your database
+- Automated email confirmation system (via SMTP integration)
+- Persistent form data storage using localStorage
+- Dynamic job reservation and cancellation system
+- Animated success screen with unique job reference ID
+- Fully modularized, reusable React components
+- Consistent and accessible UI/UX built with TailwindCSS
+- Built-in environment validation with helpful error screens
+- Optional SSL for secure deployments
 
 ---
 
-## 🧠 Tech Stack
+## Tech Stack
 
 ### Frontend
 - [Next.js 15 (App Router)](https://nextjs.org/)
@@ -60,14 +61,14 @@ This project demonstrates modern frontend architecture, reusable React component
 
 ## ⚙️ Setup Instructions
 
-### 1️⃣ Clone the repository:
+### 1️ Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/techease-booking-portal.git
-cd techease-booking-portal
+git clone https://github.com/Bankableflunky5/Booking-in-Form.git
+cd Booking-in-Form
 ```
 
-### 2️⃣ Install Dependencies
+### 2️ Install Dependencies
 
 From the project root directory, Run:
 
@@ -75,7 +76,7 @@ From the project root directory, Run:
 npm install
 ```
 
-### 3️⃣ Run the Setup Wizard
+### 3️ Run the Setup Wizard
 
 The setup wizard will:
 
@@ -90,7 +91,7 @@ Run it with:
 npm run setup
 ```
 
-### 4️⃣ Start the dev servers
+### 4️ Start the dev servers
 
 Run:
 ```bash
@@ -99,4 +100,4 @@ npm run dev
 
 ---
 ## 🧾 License
-MIT License — free to use and modify for educational or portfolio purposes.
+MIT License — Use it however you want
