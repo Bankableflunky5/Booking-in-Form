@@ -11,3 +11,7 @@ out/
 .turbo/
 coverage/
 *.log
+#sanitise
+.env
+.env.local
+.env.production

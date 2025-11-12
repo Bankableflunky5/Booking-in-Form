@@ -34,7 +34,7 @@ Before you begin, make sure the following are installed:
 
 - **Node.js** ≥ 18  
 - **MariaDB** or **MySQL** (running locally or on your LAN)  
-- *(Optional)* **Python** — only needed for the full DBDoc technician GUI
+
 
 ---
 

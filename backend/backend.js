@@ -8,8 +8,6 @@ requireEnvVars([
   //"SMTP_PASSWORD",
 ]);
 
-// Optional: comment this out in production
-console.log("🔎 DB_HOST:", process.env.DB_HOST, process.env.DB_USER);
 
 const express = require("express");
 const mysql = require("mysql2");

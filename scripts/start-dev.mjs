@@ -29,7 +29,7 @@ function runCommand(command, args, cwd, name) {
 
 // Start backend
 console.log("🚀 Starting backend...");
-runCommand("node", ["backend.js"], backendDir, "Backend");
+runCommand("node", ["index.js"], backendDir, "Backend");
 
 // Start frontend
 console.log("💻 Starting frontend...");
