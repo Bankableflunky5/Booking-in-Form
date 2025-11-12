@@ -5,6 +5,19 @@
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-blueviolet?logo=tailwind-css)](https://tailwindcss.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-20-green?logo=node.js)](https://nodejs.org/)
 
+## 🖼️ Preview
+
+<p align="center">
+  <img src="screenshots/homepage.png" width="800" alt="Homepage" />
+  <br/>
+  <img src="screenshots/form.jpeg" width="800" alt="Booking Form" />
+  <br/>
+  <img src="screenshots/success.png" width="800" alt="Success Page" />
+  <br/>
+  <img src="screenshots/terms.png" width="800" alt="Terms and Conditions Page" />
+</p>
+
+
 A full-stack booking system built with **Next.js**, **TypeScript**, and **Node.js + MySQL**, designed for repair shops or service-based businesses.
 
 This project demonstrates modern frontend architecture, reusable React components, modular backend APIs, and real-world environment configuration tooling — all production-ready.
