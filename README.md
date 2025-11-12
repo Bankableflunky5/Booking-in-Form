@@ -10,7 +10,7 @@
 *(Demo branding: FlunkyFix — “Repair is Noble.” — customizable via `.env`)*
 
 <p align="center">
-  <img src="screenshots/form.gif" width="800" alt="Homepage" />
+  <img src="screenshots/form2.gif" width="800" alt="Homepage" />
 </p>
 
 
