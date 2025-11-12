@@ -8,5 +8,7 @@ export function clearFormStorageSafely() {
   try {
     localStorage.removeItem(STORAGE_KEYS.formData);
     localStorage.removeItem(STORAGE_KEYS.legacyFormData);
-  } catch {console.warn("Could not clear form storage")}
+  } catch {
+    console.warn("Could not clear form storage");
+  }
 }

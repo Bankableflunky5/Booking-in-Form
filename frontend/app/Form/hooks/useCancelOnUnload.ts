@@ -16,7 +16,9 @@ export function useCancelOnUnload(jobID: number | null, formSubmitted: boolean, 
             body: JSON.stringify({ jobID }),
             keepalive: true,
           });
-        } catch {console.log("Failed to cancel job on unload");}
+        } catch {
+          console.log("Failed to cancel job on unload");
+        }
       }
     };
 
