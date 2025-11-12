@@ -12,9 +12,9 @@
   <br/>
   <img src="screenshots/form.jpeg" width="800" alt="Booking Form" />
   <br/>
-  <img src="screenshots/success.jpeg" width="800" alt="Success Page" />
+  <img src="screenshots/terms.jpeg" width="800" alt="Success Page" />
   <br/>
-  <img src="screenshots/terms.jpeg" width="800" alt="Terms and Conditions Page" />
+  <img src="screenshots/success.jpeg" width="800" alt="Terms and Conditions Page" />
 </p>
 
 
