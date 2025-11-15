@@ -111,7 +111,7 @@ MIT License — Use it however you want
 
 ## Notes
 
-This  is designed to work Booking Form system with the  desktop technician interface:
+This Booking Form system is designed to work  with the  desktop technician interface:
 
 Booking Portal Repository:
 https://github.com/Bankableflunky5/Tech-Interface
