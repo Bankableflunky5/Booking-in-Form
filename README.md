@@ -1,11 +1,11 @@
-# 🧩 TechRepair Booking Form
+# TechRepair Booking Form
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-blueviolet?logo=tailwind-css)](https://tailwindcss.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-20-green?logo=node.js)](https://nodejs.org/)
 
-## 🖼️ Preview
+## Preview
 
 _(Demo branding: FlunkyFix — “Repair is Noble.” — customizable via `.env`)_
 
