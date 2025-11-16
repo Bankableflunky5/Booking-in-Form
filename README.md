@@ -63,14 +63,14 @@ This project demonstrates modern frontend architecture, reusable React component
 
 ## Setup Instructions
 
-### 1. Clone the repository:
+### 1 Clone the repository:
 
 ```bash
 git clone https://github.com/Bankableflunky5/Booking-in-Form.git
 cd Booking-in-Form
 ```
 
-### 2. Install Dependencies
+### 2 Install Dependencies
 
 From the project root directory, Run:
 
@@ -78,7 +78,7 @@ From the project root directory, Run:
 npm install
 ```
 
-### 3. Run the Setup Wizard
+### 3 Run the Setup Wizard
 
 The setup wizard will:
 
@@ -93,7 +93,7 @@ Run it with:
 npm run setup
 ```
 
-### 4. Start the dev servers
+### 4 Start the dev servers
 
 Run:
 
