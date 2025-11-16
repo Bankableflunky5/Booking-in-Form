@@ -61,7 +61,7 @@ This project demonstrates modern frontend architecture, reusable React component
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1️ Clone the repository:
 
